@@ -1,0 +1,15 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Description</title>
+</head>
+<body style="background-color: black;">
+    <h2 style="color: green;">District information</h2>
+        {% for i in temp %}
+            <a href="{% url 'tuman_list' i.id %}">
+            <h3 style="color: blue;">{{ forloop.counter }}. {{ i.name_uz }}</h3><br>
+        {% endfor %}
+                <a href="{% url 'mainly' %}" style="font-size: 20px; color: red">Home</a>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+
+</head>
+<style>
+    .button-animation {
+        background-color: #008CBA;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .button-animation:hover {
+        background-color: #004466;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .button-animation {
+        animation: pulse 0.8s infinite;
+    }
+</style>
+<body style="background-color: black;">
+<div style="float: right">
+    <button class="button-animation" onclick="setLang('uz')">Uz</button>
+    <button class="button-animation" onclick="setLang('en')">En</button>
+    <button class="button-animation" onclick="setLang('ru')">Ru</button>
+</div>
+            {% for i in object_list %}
+                <h2 style="color: green;">{{ forloop.counter }}: {{ i.name }}</h2>
+                <p style="color: red; font-size: 20px;">{{ i.description }}</p>
+            {% endfor %}
+    <script >
+    function setLang(lang) {
+            const Http = new XMLHttpRequest();
+            const url='/info/setLang/' + lang;
+            Http.open("GET", url);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+                location.reload();
+            }
+        }
+</script>
+<!--    {% for i in add %}-->
+<!--        <p style="font-weight: bold; color: black; font-size: 20px">Tuman: {{ i.name_uz }}</p>-->
+<!--        <p style="font-weight: bold; color: green; font-size: 20px">Description: {{ i.description_uz }}</p>-->
+<!--        <img src="{{ i.image.url }}" alt="connect" height="200">-->
+<!--    {% endfor %}-->
+
+<a href="{% url 'mainly' %}" style="font-size: 20px; color: blue;">Home</a>
+</body>
+</html>
